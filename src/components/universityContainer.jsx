@@ -65,9 +65,9 @@ const UniversityContainer = () => {
                 <input
                   type="text"
                   placeholder="Add a comment"
-                  className="border-none w-full p-0 button !h-32 focus:!border-none focus:!shadow-none focus:!outline-none"
+                  className="pl-2 border-none w-full p-0 button !h-32 focus:!border-none focus:!shadow-none focus:!outline-none  focus:!border-slate-200  focus:!shadow-green-500"
                 />
-                <button className="relative mt-5">Post</button>
+                <button className="relative mt-5 ml-3">Post</button>
               </div>
             </div>
             <div className="mt-5 mb-5">
@@ -172,11 +172,11 @@ const UniversityContainer = () => {
                         alt=""
                       />
                     </div>
-                    <div className="flex w-400 h-14 border-1 pb-3 ">
+                    <div className="flex w-400 h-58 pr-3 border-1 pb-3 ">
                       <input
                         type="text"
                         placeholder="Add a reply"
-                        className=" w-400 pl-3 button h-14 focus:!border-none focus:!shadow-none focus:!outline-none"
+                        className=" w-400 pl-3 button h-14 border-none focus:!border-none focus:!shadow-none   focus:!border-slate-200 focus:!outline-none focus:!shadow-green-500"
                       />
                       <button className="relative mt-5">Reply</button>
                     </div>
