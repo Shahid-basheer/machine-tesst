@@ -14,14 +14,23 @@ const SignupSchema = Yup.object().shape({
   education: Yup.string().required().trim(),
   profile: Yup.string(),
 });
-const BasicInfoForm = () => {
+const BasicInfoForm = (props) => {
   const [basicInfo, setBasicInfo] = useState({});
-  const [isCompleted, setIsCompleted] = useState(true);
+  const [isCompleted, setIsCompleted] = useState(false);
+  const previous = () => {
+    setIsCompleted(false);
+  };
+
   return (
     <div className="w-full h-screen bg-white">
       {isCompleted ? (
         <>
-          <AdditionalInfo />
+          <AdditionalInfo
+            handleSubmit={props.handleSubmit}
+            previous={previous}
+            handleFormData={props.handleFormData}
+            formData={props.formData}
+          />
         </>
       ) : (
         <>
@@ -37,6 +46,7 @@ const BasicInfoForm = () => {
             validationSchema={SignupSchema}
             onSubmit={(values) => {
               setBasicInfo(values);
+              props.handleFormData(values);
               setIsCompleted(true);
             }}
           >
@@ -158,7 +168,7 @@ const BasicInfoForm = () => {
                     </div>
                   </div>
                 </div>
-                <Submit handleSubmit={handleSubmit} />
+                <Submit handleSubmit={handleSubmit} next={true} pre={false} />
               </Form>
             )}
           </Formik>

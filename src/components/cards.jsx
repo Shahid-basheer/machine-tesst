@@ -12,7 +12,7 @@ import { AiOutlineAlignRight } from "react-icons/ai";
 
 const Cards = (props) => {
   return (
-    <div className="bg-white w-350 h-96 p-3">
+    <div className="bg-white min-w-350 h-96 p-3">
       <div className="flex gap-3 w-full mb-10">
         <div className="w-16 h-16 flex justify-end">
           {props.profile ? (

@@ -36,6 +36,7 @@ export default {
       },
       minWidth: {
         96: "96px",
+        350: "350px",
       },
       maxWidth: {
         122: "122px",

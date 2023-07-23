@@ -1,5 +1,5 @@
 import { Button } from "flowbite-react";
-import React from "react";
+import React, { useState } from "react";
 import {
   FaFileAlt,
   FaRegTimesCircle,
@@ -12,9 +12,18 @@ import {
 import BasicInfoForm from "./form";
 import Cards from "../components/cards";
 const Tab = () => {
+  const [formData, setFormData] = useState([]);
+  var submitFun;
+  const handleSubmit = (subFun) => {
+    submitFun = subFun;
+  };
+  const handleFormData = (data) => {
+    const duplicateArray = [...formData];
+    setFormData([duplicateArray, ...data]);
+  };
   return (
     <div className="pl-36 pr-36 pt-10 bg-white shadow-sm h-120">
-      <div className="flex bg-slate-100 h-auto mb-5 p-2 gap-x-2">
+      <div className="flex bg-slate-100 h-auto mb-5 p-2 gap-x-2 overflow-x-auto style-scroll">
         <Cards profile={true} />
         <Cards profile={false} />
         <Cards profile={false} />
@@ -28,7 +37,7 @@ const Tab = () => {
             Step 2 of 4
           </div>
         </div>
-        <Button className="bg-blue-950">
+        <Button onClick={() => submitFun()} className="bg-blue-950">
           <FaRegSave size={20} /> &nbsp;Save As Draft
           <span></span>
         </Button>
@@ -86,7 +95,11 @@ const Tab = () => {
           </div>
         </div>
       </div>
-      <BasicInfoForm />
+      <BasicInfoForm
+        handleSubmit={handleSubmit}
+        handleFormData={handleFormData}
+        formData={formData}
+      />
     </div>
   );
 };
