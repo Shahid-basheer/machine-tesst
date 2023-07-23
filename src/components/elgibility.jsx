@@ -8,9 +8,8 @@ const SignupSchema = Yup.object().shape({
   syllabus: Yup.string().required("Required"),
 });
 const Elgibility = (props) => {
-  const [isCompletedEligibility, setIsCompletedEligibility] = useState(false);
   const previous = () => {
-    setIsCompletedEligibility(false);
+    props.setIsCompletedEligibility(false);
   };
   useLayoutEffect(() => {
     window.scrollTo({ top: 15, behavior: "smooth" });
@@ -18,13 +17,15 @@ const Elgibility = (props) => {
 
   return (
     <div>
-      {isCompletedEligibility ? (
+      {props.isCompletedEligibility ? (
         <>
           <Fee
             handleSubmit={props.handleSubmit}
             previous={previous}
             handleFormData={props.handleFormData}
             formData={props.formData}
+            isFeeCompleted={props.isFeeCompleted}
+            setIsFeeCompleted={props.setIsFeeCompleted}
           />
         </>
       ) : (
@@ -37,8 +38,7 @@ const Elgibility = (props) => {
             }}
             validationSchema={SignupSchema}
             onSubmit={(values) => {
-              setIsCompletedEligibility(true);
-              props.handleFormData(values);
+              props.setIsCompletedEligibility(true);
             }}
           >
             {({

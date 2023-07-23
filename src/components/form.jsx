@@ -28,8 +28,12 @@ const BasicInfoForm = (props) => {
           <AdditionalInfo
             handleSubmit={props.handleSubmit}
             previous={previous}
-            handleFormData={props.handleFormData}
-            formData={props.formData}
+            isCompletedAdditionalInfo={props.isCompletedAdditionalInfo}
+            setIsCompletedAdditionalInfo={props.setIsCompletedAdditionalInfo}
+            isCompletedEligibility={props.isCompletedEligibility}
+            setIsCompletedEligibility={props.setIsCompletedEligibility}
+            isFeeCompleted={props.isFeeCompleted}
+            setIsFeeCompleted={props.setIsFeeCompleted}
           />
         </>
       ) : (
@@ -46,7 +50,6 @@ const BasicInfoForm = (props) => {
             validationSchema={SignupSchema}
             onSubmit={(values) => {
               setBasicInfo(values);
-              props.handleFormData(values);
               setIsCompleted(true);
             }}
           >

@@ -12,15 +12,15 @@ import {
 import BasicInfoForm from "./form";
 import Cards from "../components/cards";
 const Tab = () => {
-  const [formData, setFormData] = useState([]);
+  const [isCompletedAdditionalInfo, setIsCompletedAdditionalInfo] =
+    useState(false);
+  const [isCompletedEligibility, setIsCompletedEligibility] = useState(false);
+  const [isFeeCompleted, setIsFeeCompleted] = useState(false);
   var submitFun;
   const handleSubmit = (subFun) => {
     submitFun = subFun;
   };
-  const handleFormData = (data) => {
-    const duplicateArray = [...formData];
-    setFormData([duplicateArray, ...data]);
-  };
+
   return (
     <div className="pl-36 pr-36 pt-10 bg-white shadow-sm h-120">
       <div className="flex bg-slate-100 h-auto mb-5 p-2 gap-x-2 overflow-x-auto style-scroll">
@@ -59,7 +59,10 @@ const Tab = () => {
           </div>
           <div className="w-130 h-130">
             <div className="flex justify-center items-center w-130 h-130 bg-slate-300 rounded-full">
-              <FaFileArchive size={40} className="text-blue-950" />
+              <FaFileArchive
+                size={40}
+                color={`${isCompletedAdditionalInfo ? "green" : "blue"}`}
+              />
             </div>
           </div>
           <div className="flex  items-center w-full h-full">
@@ -67,7 +70,10 @@ const Tab = () => {
           </div>
           <div className="w-130 h-130">
             <div className="flex justify-center items-center w-130 h-130 bg-slate-300 rounded-full">
-              <FaTrophy size={40} color="gray" />
+              <FaTrophy
+                size={40}
+                color={`${isCompletedEligibility ? "green" : "gray"}`}
+              />
             </div>
           </div>
           <div className="flex items-center w-full h-full">
@@ -75,7 +81,10 @@ const Tab = () => {
           </div>
           <div className="w-130 h-130">
             <div className="flex justify-center items-center w-130 h-130 bg-slate-300 rounded-full">
-              <FaMoneyBillAlt size={40} color="gray" />
+              <FaMoneyBillAlt
+                size={40}
+                color={`${isFeeCompleted ? "green" : "gray"}`}
+              />
             </div>
           </div>
           <div className="text-center text-xs w-130 h-130">
@@ -97,8 +106,12 @@ const Tab = () => {
       </div>
       <BasicInfoForm
         handleSubmit={handleSubmit}
-        handleFormData={handleFormData}
-        formData={formData}
+        isCompletedAdditionalInfo={isCompletedAdditionalInfo}
+        setIsCompletedAdditionalInfo={setIsCompletedAdditionalInfo}
+        isCompletedEligibility={isCompletedEligibility}
+        setIsCompletedEligibility={setIsCompletedEligibility}
+        isFeeCompleted={isFeeCompleted}
+        setIsFeeCompleted={setIsFeeCompleted}
       />
     </div>
   );

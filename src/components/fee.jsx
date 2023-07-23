@@ -8,6 +8,7 @@ const SignupSchema = Yup.object().shape({
 });
 
 const Fee = (props) => {
+  const [isFeeCompleted, setIsFeeCompleted] = useState(false);
   return (
     <div>
       <h1 className="mb-5 text-2xl">Fess & Scolarship</h1>
@@ -18,7 +19,8 @@ const Fee = (props) => {
         }}
         validationSchema={SignupSchema}
         onSubmit={(values) => {
-          alert(JSON.stringify(props?.formData));
+          props.setIsFeeCompleted(true);
+          alert("Successfully course created!");
         }}
       >
         {({

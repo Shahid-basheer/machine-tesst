@@ -356,8 +356,6 @@ const SignupSchema = Yup.object().shape({
   ),
 });
 export const AdditionalInfo = (props) => {
-  const [isCompletedAdditionalInfo, setIsCompletedAdditionalInfo] =
-    useState(false);
   const [additionalInfo, setAdditionalInfo] = useState({});
   const [pdf, setPdf] = useState([{ documents: "" }]);
   const [course, setCourse] = useState([{ courseAffiliation: "" }]);
@@ -367,7 +365,7 @@ export const AdditionalInfo = (props) => {
   ]);
 
   const previous = () => {
-    setIsCompletedAdditionalInfo(false);
+    props.setIsCompletedAdditionalInfo(false);
   };
   const handleFileChange = (e, key, values) => {
     const newValues = [...pdf];
@@ -392,13 +390,15 @@ export const AdditionalInfo = (props) => {
 
   return (
     <div className="bg-white w-full h-full">
-      {isCompletedAdditionalInfo ? (
+      {props.isCompletedAdditionalInfo ? (
         <>
           <Elgibility
             handleSubmit={props.handleSubmit}
             previous={previous}
-            handleFormData={props.handleFormData}
-            formData={props.formData}
+            isCompletedEligibility={props.isCompletedEligibility}
+            setIsCompletedEligibility={props.setIsCompletedEligibility}
+            isFeeCompleted={props.isFeeCompleted}
+            setIsFeeCompleted={props.setIsFeeCompleted}
           />
         </>
       ) : (
@@ -421,9 +421,7 @@ export const AdditionalInfo = (props) => {
             validationSchema={SignupSchema}
             onSubmit={(values) => {
               setAdditionalInfo(values);
-              props.handleFormData(values);
-              setIsCompletedAdditionalInfo(true);
-              alert(JSON.stringify(values));
+              props.setIsCompletedAdditionalInfo(true);
             }}
           >
             {({
